@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h4>Comentarios</h4>
+
+	<form method="POST">
+		<p>
+			{{ form.author.label }} <br />
+			{{ form.author }}
+		</p>
+		<p>
+			{{ form.text.label }} <br />
+			{{ form.text }}
+		</p>
+
+		<input type="submit" value="Enviar" />
+	</form>
+
+	{% for comment in comments %}
+		<p>
+			<b>{{ comment.author }}</b> <br />
+			{{ comment.text }}
+		</p>
+	{% endfor %}
+{% endblock %}

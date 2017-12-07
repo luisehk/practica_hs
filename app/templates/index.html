@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% for person in persons %}
+		{% if person.is_welcome %}
+			<p>¡Hola {{ person.name }}!</p>
+		{% else %}
+			<p>Por favor retirate {{ person.name }}</p>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
