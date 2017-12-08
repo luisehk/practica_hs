@@ -13,3 +13,6 @@ class Comment(db.Model):
         db.Text,
         index=False,
         unique=False)
+
+    def __str__(self):
+        return '[{}] {}'.format(self.author, self.text)

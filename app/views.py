@@ -49,3 +49,25 @@ def comentarios():
         comments=Comment.query.all(),
         form=form
     )
+
+
+@app.route('/comentario/<int:id>', methods=["GET"])
+def ver_comentario(id):
+    c = Comment.query.get(id)
+
+    print('Alguien accedió al comentario', c)
+
+    return render_template(
+        'comment.html',
+        comment=c
+    )
+
+
+@app.route('/comentario/borrar/<int:id>', methods=["POST"])
+def borrar_comentario(id):
+    c = Comment.query.get(id)
+
+    db.session.delete(c)
+    db.session.commit()
+
+    return 'Comentario borrado'

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4>Comentario #{{ comment.id }}</h4>
+
+    <br>
+
+    <p>
+        <b>{{ comment.author }}</b> <br />
+        {{ comment.text }}
+    </p>
+
+    <p>
+      <form id="deleteForm" action="/comentario/borrar/{{ comment.id }}" method="POST">
+      </form>
+
+      <a id="deleteLink" href="#">Borrar</a>
+    </p>
+
+    <script src="/static/js/comment.js"></script>
+{% endblock %}
