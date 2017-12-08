@@ -13,6 +13,9 @@ class Comment(db.Model):
         db.Text,
         index=False,
         unique=False)
+    created = db.Column(
+        db.DateTime,
+        index=True)
 
     def __str__(self):
         return '[{}] {}'.format(self.author, self.text)

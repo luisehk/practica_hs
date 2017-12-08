@@ -22,7 +22,7 @@
 
 	{% for comment in comments %}
 		<p>
-			<b>{{ comment.author }}</b> <a href="javascript:deleteComment( {{ comment.id }} )">[x]</a>
+			<b>({{ comment.created.year }}/{{ comment.created.month }}/{{ comment.created.day }} a las {{ comment.created.hour }}:{{ comment.created.minute }}) {{ comment.author }}</b> <a href="javascript:deleteComment( {{ comment.id }} )">[x]</a>
 
       <br />
 			{{ comment.text }}

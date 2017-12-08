@@ -3,6 +3,7 @@ from app import app, db
 from flask import render_template, redirect, request
 from app.forms import CommentForm
 from app.models import Comment
+from datetime import datetime
 
 
 @app.route('/')
@@ -36,7 +37,8 @@ def comentarios():
     if form.validate_on_submit():
         c = Comment(
             author=form.author.data,
-            text=form.text.data
+            text=form.text.data,
+            created=datetime.now()
         )
 
         db.session.add(c)
