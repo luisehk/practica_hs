@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from app import app, db
-from flask import render_template, redirect
+from flask import render_template, redirect, request
 from app.forms import CommentForm
 from app.models import Comment
 
@@ -52,15 +52,23 @@ def comentarios():
 
 
 @app.route('/comentario/<int:id>', methods=["GET"])
-def ver_comentario(id):
+def comentario(id):
     c = Comment.query.get(id)
-
-    print('Alguien accedió al comentario', c)
 
     return render_template(
         'comment.html',
         comment=c
     )
+
+
+@app.route('/comentario/borrar', methods=["POST"])
+def borrar_comentario_sin_id():
+    c = Comment.query.get(request.form['commentId'])
+
+    db.session.delete(c)
+    db.session.commit()
+
+    return redirect('/comentarios')
 
 
 @app.route('/comentario/borrar/<int:id>', methods=["POST"])
@@ -70,4 +78,4 @@ def borrar_comentario(id):
     db.session.delete(c)
     db.session.commit()
 
-    return 'Comentario borrado'
+    return redirect('/comentarios')

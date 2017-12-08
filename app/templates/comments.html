@@ -16,10 +16,18 @@
 		<input type="submit" value="Enviar" />
 	</form>
 
+  <form id="deleteForm" action="/comentario/borrar" method="POST">
+    <input type="hidden" name="commentId" id="commentId" />
+  </form>
+
 	{% for comment in comments %}
 		<p>
-			<b>{{ comment.author }}</b> <br />
+			<b>{{ comment.author }}</b> <a href="javascript:deleteComment( {{ comment.id }} )">[x]</a>
+
+      <br />
 			{{ comment.text }}
 		</p>
 	{% endfor %}
+
+  <script src="/static/js/comments.js"></script>
 {% endblock %}
